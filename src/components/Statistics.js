@@ -1,11 +1,12 @@
+import { Text } from './Statistics.styled';
 export const Statistics = ({ good, neutral, bad, total, posFeedback }) => {
   return (
     <div>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total: {total}</p>
-      <p>Positive feedback: {posFeedback}%</p>
+      <Text>Good: {good}</Text>
+      <Text>Neutral: {neutral}</Text>
+      <Text>Bad: {bad}</Text>
+      <Text>Total: {total}</Text>
+      <Text>Positive feedback: {posFeedback}%</Text>
     </div>
   );
 };

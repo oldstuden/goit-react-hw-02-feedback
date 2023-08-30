@@ -1,7 +1,8 @@
+import { Topic } from './Section.styled';
 export const Section = ({ title, children }) => {
   return (
     <div>
-      <h2>{title}</h2>
+      <Topic>{title}</Topic>
       {children}
     </div>
   );
