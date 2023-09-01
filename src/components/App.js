@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { Statistics } from './Statistics';
-import { Section } from './Section';
+import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
 import { StatisticEmpty } from './statisticEmpty';
-import { FeedbackOptions } from './FeedbackOptions';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { GlobalStyle } from './GlobalStyle';
 import { Wrapper } from './Wrapper.styled';
 export class App extends Component {
@@ -11,8 +11,7 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  handleClick = evt => {
-    const { value } = evt.target;
+  handleClick = value => {
     this.setState(pState => ({
       [value]: pState[value] + 1,
     }));
@@ -30,23 +29,22 @@ export class App extends Component {
     return ((good / result) * 100).toFixed(2);
   };
   render() {
-    const { good, neutral, bad } = this.state;
-    const isFeedback = good + neutral + bad;
+    const total = this.countTotalFeedback();
     return (
       <Wrapper>
         <Section title="Please leave feedback">
           <FeedbackOptions
             onLeaveFeedback={this.handleClick}
-            options={['good', 'neutral', 'bad']}
+            options={Object.keys(this.state)}
           />
         </Section>
         <Section title="Statistics">
-          {isFeedback ? (
+          {total ? (
             <Statistics
               good={this.state.good}
               neutral={this.state.neutral}
               bad={this.state.bad}
-              total={this.countTotalFeedback()}
+              total={total}
               posFeedback={this.countPositiveFeedbackPercentage()}
             />
           ) : (
